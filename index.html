@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <link rel="stylesheet" href="/css/style.css">
   
   <title>Frontend Mentor | Age calculator app</title>
 
@@ -16,22 +18,54 @@
 </head>
 <body>
 
-  Day
-  DD
+  <div class="wrapper">
 
-  Month
-  MM
 
-  Year
-  YYYY
+    <div class="form">
 
-  -- years
-  -- months
-  -- days
+      <div class="">
+        <input id="day" type="text" placeholder="DD" required>
+        <label for="day">Day</label>
+      </div>
+
+      <div class="">
+        <input id="month" type="text" placeholder="MM" required>
+        <label for="mont">Month</label>
+      </div>
+
+      <div class="">
+        <input id="year" type="text" placeholder="YYYY" required>
+        <label for="year">Year</label>
+      </div>
+
+    </div>
+
+
+    <div class="results">
+      <div class="results__item">
+        <p class="years">--</p>
+        <p class="results__text">years</p>
+      </div>
+
+      <div class="results__item">
+        <p class="montsh">--</p>
+        <p class="results__text">months</p>
+      </div>
+
+      <div class="results__item">
+        <p class="days">--</p>
+        <p class="results__text">days</p>
+      </div>
+    </div>
+
+
+  </div>
   
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
   </div>
+
+  <script src="/script.js"></script>
 </body>
 </html>
