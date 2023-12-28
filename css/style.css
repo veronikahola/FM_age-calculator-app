@@ -1,3 +1,123 @@
 body {
-  background-color: pink;
+  font-family: "Poppins", sans-serif;
+  font-size: 32px;
+  background-color: hsl(0, 0%, 94%);
+}
+
+p {
+  margin: 0;
+}
+
+.icon {
+  width: 100%;
+  text-align: center;
+}
+@media screen and (min-width: 450px) {
+  .icon {
+    text-align: right;
+  }
+}
+.icon img {
+  background-color: hsl(259, 100%, 65%);
+  border-radius: 50%;
+  padding: 20px;
+  margin-top: -50%;
+}
+
+.wrapper {
+  background-color: hsl(0, 0%, 100%);
+  margin: 150px auto 30px auto;
+  max-width: 340px;
+  padding: 40px 30px 40px 30px;
+  border-radius: 30px 30px 150px 30px;
+  box-shadow: 5px 5px 20px hsla(0, 0%, 8%, 0.05);
+}
+@media screen and (min-width: 400px) {
+  .wrapper {
+    max-width: 680px;
+    padding: 50px;
+  }
+}
+
+.form {
+  display: flex;
+  max-width: 100%;
+  justify-content: space-between;
+  padding-bottom: 100px;
+  border-bottom: 1px solid hsl(0, 0%, 86%);
+}
+@media screen and (min-width: 450px) {
+  .form {
+    justify-content: flex-start;
+    gap: 10px;
+    padding-bottom: 60px;
+  }
+}
+.form__field {
+  display: flex;
+  flex-direction: column-reverse;
+  flex-basis: 25%;
+  position: relative;
+}
+.form label {
+  font-size: 16px;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  color: hsl(0, 1%, 44%);
+}
+.form input {
+  font-size: 32px;
+  padding: 20px;
+  width: 60%;
+  border-radius: 10px;
+  border: 1px solid hsl(0, 0%, 86%);
+  font-weight: 800;
+}
+@media screen and (max-width: 450px) {
+  .form input {
+    width: 100%;
+    font-size: 28px;
+    padding: 10px;
+  }
+}
+.form input:focus {
+  border-color: hsl(259, 100%, 65%);
+}
+
+.results__item {
+  display: flex;
+  font-size: 50px;
+  font-style: italic;
+  font-weight: 800;
+}
+@media screen and (min-width: 450px) {
+  .results__item {
+    font-size: 100px;
+  }
+}
+.results__before {
+  color: hsl(259, 100%, 65%);
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+button:hover img {
+  background-color: hsl(0, 0%, 8%);
+}
+
+.warning {
+  font-size: 15px;
+  padding-top: 10px;
+  color: hsl(0, 100%, 67%);
+  font-style: italic;
+  font-weight: 400;
+  position: absolute;
+  bottom: -35px;
+}
+
+.hidden {
+  display: none;
 }/*# sourceMappingURL=style.css.map */
