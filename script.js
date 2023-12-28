@@ -1,5 +1,6 @@
 const button = document.querySelector('.button');
 
+
 const inputDay = document.getElementById('day');
 const inputMonth = document.getElementById('month');
 const inputYear = document.getElementById('year');
@@ -7,6 +8,7 @@ const inputYear = document.getElementById('year');
 const formFieldDay = document.querySelector('.day');
 const formFieldMonth = document.querySelector('.month');
 const formFieldYear = document.querySelector('.year');
+
 
 const requiredDay = formFieldDay.querySelector('.required');
 const validDay = formFieldDay.querySelector('.valid');
@@ -16,6 +18,7 @@ const validMonth = formFieldMonth.querySelector('.valid');
 
 const requiredYear = formFieldYear.querySelector('.required');
 const validYear = formFieldYear.querySelector('.valid');
+
 
 let finalDay = 0;
 let finalMonth = 0;
@@ -31,18 +34,19 @@ let numberOfDays;
 let numberOfMonths;
 let numberOfYears;
 
-console.log('Current Day:', currentDay);
-console.log('Current Month:', currentMonth);
-console.log('Current Year:', currentYear);
-
 
 button.addEventListener('click', function () {
+    initial();
+
+    // current date
     const valueDay = Number(inputDay.value);
     const valueMonth = Number(inputMonth.value);
     const valueYear = Number(inputYear.value);
 
-    const isLeapYear = (year) => (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0));
+    
 
+    // day logic
+    // calculating max number of days based on given month
     let maxValueDay;
 
     if (valueMonth === 1 || valueMonth === 3 || valueMonth === 5 || valueMonth === 7 || valueMonth === 8 || valueMonth === 10 || valueMonth === 12) {
@@ -56,86 +60,110 @@ button.addEventListener('click', function () {
             maxValueDay = 28;
         }
     }
-
-    // day
+    // reguired field
     if (inputDay.value === '') {
-        requiredDay.classList.remove('hidden');
-    } else {
-        requiredDay.classList.add('hidden');
-        initial();
+        error(inputDay, requiredDay, finalDay);
 
-        if (valueDay < 1 || (valueDay > maxValueDay && valueDay !== 29)) {
-            validDay.classList.remove('hidden');
-            initial();
+    // must be valid field
+    } else {
+        succes(inputDay, requiredDay);
+
+        if (valueDay > maxValueDay && valueDay !== 29) {
+            error(inputDay, validDay, finalDay);
+
+        } else if (valueDay < 1 ||
+            (valueDay > maxValueDay && valueDay !== 29)) {
+            error(inputDay, validDay, finalDay);
+
         } else {
-            console.log(valueDay);
             finalDay = valueDay;
-            validDay.classList.add('hidden');
+            succes(inputDay, requiredDay);
         }
     }
 
-    // month
+    // month logic
+    // reguired field
     if (inputMonth.value === '') {
-        requiredMonth.classList.remove('hidden');
-        initial();
+        error(inputMonth, requiredMonth, finalMonth);
+
+    // must be valid field
     } else {
-        requiredMonth.classList.add('hidden');
+        succes(inputMonth, requiredMonth);
 
         if (valueMonth < 1 || valueMonth > 12) {
-            validMonth.classList.remove('hidden');
-            initial();
+            error(inputMonth, validMonth, finalMonth);
+
         } else {
-            console.log(valueMonth);
             finalMonth = valueMonth;
-            validMonth.classList.add('hidden');
+            succes(inputMonth, requiredMonth);
         }
     }
 
-    // year
+    // year logic
+    // reguired field
     if (inputYear.value === '') {
-        requiredYear.classList.remove('hidden');
-        document.querySelector('.years').innerHTML = '--';
-    document.querySelector('.months').innerHTML = '--';
-    document.querySelector('.days').innerHTML = '--';
+        error(inputYear, requiredYear, finalYear);
+
+    // must be valid field
     } else {
-        requiredYear.classList.add('hidden');
+        succes(inputYear, requiredYear);
 
         if (valueYear > currentYear) {
-            validYear.classList.remove('hidden');
-            document.querySelector('.years').innerHTML = '--';
-    document.querySelector('.months').innerHTML = '--';
-    document.querySelector('.days').innerHTML = '--';
+            error(inputYear, requiredYear, finalYear);
         } else {
-            console.log(valueYear);
             finalYear = valueYear;
-            validYear.classList.add('hidden');
+            succes(inputYear, requiredYear);
         }
     }
 
 
+    // getting the final values to calculate with
     if (finalDay > 0 && finalMonth > 0 && finalYear > 0) {
-        console.log(`yes! the input is ${finalDay}.${finalMonth}.${finalYear}`);
         calculate(finalDay, finalMonth, finalYear)
+
+    } else {
+        initial();
     }
-
-
-    
 });
 
 
-
+// function to calculate the results
 const calculate = (day, month, year) => {
     numberOfYears = currentYear - finalYear;
     numberOfMonths = currentMonth - finalMonth;
     numberOfDays = currentDay - finalDay;
+
 
     document.querySelector('.years').innerHTML = numberOfYears;
     document.querySelector('.months').innerHTML = numberOfMonths;
     document.querySelector('.days').innerHTML = numberOfDays;
 }
 
+
+// function to set the '--' value
 const initial = () => {
-    document.querySelector('.years').innerHTML = '--';
-    document.querySelector('.months').innerHTML = '--';
-    document.querySelector('.days').innerHTML = '--';
+    document.querySelector('.years').textContent= '--';
+    document.querySelector('.months').textContent = '--';
+    document.querySelector('.days').textContent = '--';
 }
+
+
+//functions to handle error/succes messages and design
+    const error = (color, remove, zero) => {
+        color.style.borderColor = 'hsl(0, 100%, 67%)'
+        remove.classList.remove('hidden');
+        zero = 0;
+
+        if (zero === finalDay) {
+            finalDay = 0;
+        } else if (zero === finalMonth) {
+            finalMonth = 0;
+        } else if (zero === finalYear) {
+            finalYear = 0;
+        }
+    }
+
+    const succes = (color, add) => {
+        color.style.borderColor = 'hsl(0, 0%, 86%)'
+        add.classList.add('hidden');
+    }
