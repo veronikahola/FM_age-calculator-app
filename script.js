@@ -129,6 +129,7 @@ button.addEventListener('click', function () {
 
 // function to calculate the results
 const calculate = (day, month, year) => {
+
     numberOfYears = currentYear - finalYear;
     numberOfMonths = currentMonth - finalMonth;
     numberOfDays = currentDay - finalDay;

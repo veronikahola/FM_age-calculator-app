@@ -34,7 +34,7 @@ p {
 }
 @media screen and (min-width: 400px) {
   .wrapper {
-    max-width: 680px;
+    max-width: 750px;
     padding: 50px;
   }
 }
@@ -86,9 +86,10 @@ p {
 
 .results__item {
   display: flex;
-  font-size: 50px;
+  font-size: 40px;
   font-style: italic;
   font-weight: 800;
+  line-height: 1;
 }
 @media screen and (min-width: 450px) {
   .results__item {
