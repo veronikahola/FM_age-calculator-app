@@ -134,10 +134,9 @@ const calculate = (day, month, year) => {
     numberOfMonths = currentMonth - finalMonth;
     numberOfDays = currentDay - finalDay;
 
-
-    document.querySelector('.years').innerHTML = numberOfYears;
-    document.querySelector('.months').innerHTML = numberOfMonths;
-    document.querySelector('.days').innerHTML = numberOfDays;
+    animation(numberOfDays, '.days');
+    animation(numberOfMonths, '.months');
+    animation(numberOfYears, '.years');
 }
 
 
@@ -168,3 +167,15 @@ const initial = () => {
         color.style.borderColor = 'hsl(0, 0%, 86%)'
         add.classList.add('hidden');
     }
+
+
+// function to animate numbers
+const animation = (numberOf, className) => {
+    for (let i = 0; i <= numberOf; i++) {
+        setTimeout(() => {
+            document.querySelector(className).textContent = i;
+        }, i * 60);
+    }
+};
+
+
